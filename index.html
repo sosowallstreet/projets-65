@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PROJECT 65">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>PROJECT 65 — Donjon de l'Ascension</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#151d32;--panel2:#1d2942;--line:#33415e;--gold:#f6c85f;--cyan:#67d8ef;--green:#55d69e;--muted:#a9b6ce;--text:#f5f7fb;--purple:#b99aff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1c2b4b 0,#0b1020 58%);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);padding:18px 14px 44px}
+main{max-width:760px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--cyan);font-weight:800}.pill{border:1px solid #526487;border-radius:99px;padding:6px 10px;color:var(--gold);font-size:11px;font-weight:800}
+h1{font-size:clamp(28px,8vw,44px);line-height:1;margin:12px 0 6px;letter-spacing:-1.5px}.sub{color:var(--muted);margin:0 0 18px}.hero,.panel,.level{background:linear-gradient(145deg,#192641,#111a2d);border:1px solid var(--line);border-radius:20px;padding:17px;margin:14px 0;box-shadow:0 12px 35px #0003}
+.hero{border-color:#526487;background:linear-gradient(135deg,#1b3154,#141b30)}.heroTop{display:flex;justify-content:space-between;align-items:center}.heroIcon{font-size:52px;filter:drop-shadow(0 5px 8px #0007)}.big{font-size:42px;font-weight:900;letter-spacing:-2px}.gold{color:var(--gold)}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}.bar{height:11px;background:#34415a;border-radius:99px;overflow:hidden;margin:10px 0}.bar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#42c5df,#8b9cff,#d2a7ff);width:0;transition:width .3s}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}.stat{background:#0e1729aa;border-radius:13px;padding:11px}.stat b{display:block;font-size:21px}.stat span{font-size:10px;letter-spacing:1px;color:var(--muted)}
+h2{font-size:19px;margin:22px 2px 8px}.sectionHint{font-size:12px;color:var(--muted);margin:0 2px 10px}
+.level{padding:13px;margin:10px 0;display:grid;grid-template-columns:62px 1fr;gap:12px;align-items:center}.avatar{width:62px;height:72px;border-radius:15px;background:linear-gradient(160deg,#293c62,#182238);display:grid;place-items:center;font-size:39px;border:1px solid #526487}.level h3{font-size:15px;margin:0 0 3px}.level p{font-size:12px;color:var(--muted);margin:0 0 8px}.level .bar{height:7px;margin:6px 0}.status{font-size:10px;font-weight:900;letter-spacing:.7px;color:var(--cyan)}.done .status{color:var(--green)}.done{border-color:#348b70}
+input,button{font:inherit}input{width:100%;background:#0b1426;border:1px solid #485879;color:white;padding:13px;border-radius:12px;margin:6px 0 12px}label{font-size:12px;color:var(--muted);font-weight:700}
+button{border:0;border-radius:12px;background:linear-gradient(90deg,#39b9d6,#8e83ef);color:#07111e;font-weight:900;padding:13px 16px;width:100%;cursor:pointer}button.secondary{background:#273651;color:#e8efff;border:1px solid #536584;margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.notice{font-size:12px;line-height:1.5;color:var(--muted);background:#0c1628;border-radius:12px;padding:11px}.badge{display:inline-block;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:900;background:#263954;color:var(--cyan)}.badge.good{background:#123d35;color:#73e6b5}.badge.warn{background:#49361b;color:#ffd27a}
+canvas{width:100%;height:220px;display:block;background:#0d1729;border-radius:14px}.history{max-height:150px;overflow:auto;font-size:12px;color:var(--muted)}.history div{display:flex;justify-content:space-between;padding:7px 2px;border-bottom:1px solid #283550}
+footer{text-align:center;color:#8290a9;font-size:11px;margin:22px 0}
+@media(min-width:600px){.stats{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body><main>
+<div class="top"><div class="eyebrow">CHRONIQUES DE L'ASCENSION</div><div class="pill">SAISON 2026–2028</div></div>
+<h1>PROJECT <span class="gold">65</span></h1><p class="sub">Le donjon de l'Ascension · Chaque pesée te fait avancer.</p>
+<section class="hero">
+ <div class="heroTop"><div><div class="small">TON AVENTURIER</div><div class="big" id="currentWeight">95,0 <span style="font-size:18px">kg</span></div><div class="small">Rang : <b id="rank" class="gold">Apprenti de l'Ascension</b></div></div><div class="heroIcon">🧙‍♂️</div></div>
+ <div class="bar"><span id="globalBar"></span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span id="globalPct">60 % du chemin depuis 115 kg</span><b id="lost">20 kg perdus</b></div>
+ <div class="stats"><div class="stat"><span>POIDS RESTANT</span><b id="remaining">30 kg</b></div><div class="stat"><span>IMC ACTUEL</span><b id="bmi">32,9</b></div><div class="stat"><span>OBJECTIF FINAL</span><b>65 kg</b></div><div class="stat"><span>JOURS ÉCOULÉS</span><b id="days">0 / 730</b></div></div>
+</section>
+
+<h2>🗺️ Carte du donjon</h2><p class="sectionHint">Chaque salle se débloque automatiquement lorsque tu atteins son poids.</p>
+<div id="levels"></div>
+
+<h2>⏳ Course contre le calendrier</h2>
+<section class="panel">
+ <div class="small">POIDS THÉORIQUE À LA DATE DE LA PESÉE</div><div class="big" id="expected">95,0 kg</div>
+ <p><span class="badge" id="paceStatus">DANS LES TEMPS</span> <b id="paceDiff">0 kg d'écart</b></p>
+ <div class="grid2"><div class="stat"><span>DATE FINALE</span><b style="font-size:15px">06/11/2028</b></div><div class="stat"><span>RYTHME INDICATIF RESTANT</span><b id="weekly">0,00 kg/sem.</b></div></div>
+ <p class="notice">Comparaison linéaire indicative entre 95 kg au 06/11/2026 et 65 kg au 06/11/2028. Le rythme calculé n'est pas une consigne médicale : privilégie une perte progressive et adaptée à ta santé.</p>
+</section>
+
+<h2>📜 Journal des pesées</h2>
+<section class="panel">
+ <label for="weight">NOUVELLE PESÉE (KG)</label><input id="weight" type="number" min="30" max="250" step="0.1" placeholder="Ex. 94,5">
+ <label for="date">DATE DE LA PESÉE</label><input id="date" type="date" min="2026-11-06" max="2028-11-06" value="2026-11-06">
+ <button id="save">⚔️ ENREGISTRER LA PESÉE</button>
+ <p id="message" class="small" aria-live="polite"></p>
+ <h3 style="font-size:14px;margin:18px 0 8px">Courbe de progression</h3><canvas id="chart" width="680" height="260"></canvas>
+ <div class="history" id="history"></div>
+ <button class="secondary" id="export">Exporter mon journal (JSON)</button>
+</section>
+<h2>🏅 Trophées IMC</h2><section class="panel" id="trophies"></section>
+<footer>PROJECT 65 · Tes données restent enregistrées sur cet appareil. Fais une sauvegarde JSON de temps en temps.</footer>
+</main>
+<script>
+const START='2026-11-06', END='2028-11-06', HEIGHT=1.70;
+const levels=[
+ {w:90,name:'Le Réveil du Titan',hero:'🛡️',role:'Le Gardien des Portes',from:95,desc:'La première salle est derrière toi.'},
+ {w:85,name:"Le Guerrier d'Acier",hero:'⚔️',role:'Le Chevalier des Brumes',from:90,desc:'La volonté devient une armure.'},
+ {w:80,name:'Le Prédateur',hero:'🐺',role:'Le Rôdeur des Profondeurs',from:85,desc:'Tu avances avec maîtrise.'},
+ {w:75,name:'Le Phénix',hero:'🧝',role:'Le Mage Renaissance',from:80,desc:'Une nouvelle force se révèle.'},
+ {w:70,name:'Le Maître de la Discipline',hero:'🧙',role:'L’Archimage du Donjon',from:75,desc:'La dernière grande porte approche.'},
+ {w:65,name:'PROJECT 65 : LÉGENDE',hero:'👑',role:'Le Seigneur de l’Ascension',from:70,desc:'Le sommet est à toi.'}
+];
+const $=id=>document.getElementById(id);
+let data=JSON.parse(localStorage.getItem('project65-data')||'null')||{history:[{date:START,weight:95}]};
+function fmt(n){return n.toFixed(1).replace('.',',')}
+function dateDays(a,b){return Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/86400000)}
+function latest(){return [...data.history].sort((a,b)=>a.date.localeCompare(b.date)).at(-1)}
+function render(){
+ const entry=latest(),w=entry.weight,elapsed=Math.max(0,Math.min(730,dateDays(START,entry.date))),expected=95-30*elapsed/730;
+ const lost=115-w,pct=Math.max(0,Math.min(100,lost/50*100)),diff=expected-w,remainingDays=730-elapsed;
+ $('currentWeight').innerHTML=fmt(w)+' <span style="font-size:18px">kg</span>';
+ $('globalBar').style.width=pct+'%';$('globalPct').textContent=fmt(pct)+' % du chemin depuis 115 kg';
+ $('lost').textContent=fmt(lost)+' kg perdus';$('remaining').textContent=fmt(Math.max(0,w-65))+' kg';
+ $('bmi').textContent=fmt(w/(HEIGHT*HEIGHT));$('days').textContent=elapsed+' / 730';
+ const achieved=levels.filter(x=>w<=x.w).length;
+ $('rank').textContent=achieved?levels[achieved-1].role:'Apprenti de l’Ascension';
+ $('levels').innerHTML=levels.map((l,i)=>{
+   const p=Math.max(0,Math.min(100,(l.from-w)/(l.from-l.w)*100)),done=w<=l.w;
+   return `<article class="level ${done?'done':''}"><div class="avatar">${l.hero}</div><div><div class="status">${done?'✦ SALLE VAINCUE':'SALLE '+String(i+1).padStart(2,'0')}</div><h3>${l.name}</h3><p>${l.desc} · objectif ${l.w} kg</p><div class="bar"><span style="width:${p}%;background:${done?'linear-gradient(90deg,#3ccf9b,#9af0c9)':''}"></span></div><div class="small">${fmt(p)} % · ${done?'Débloqué':'Encore '+fmt(Math.max(0,w-l.w))+' kg'}</div></div></article>`;
+ }).join('');
+ $('expected').textContent=fmt(expected)+' kg';
+ $('paceDiff').textContent=fmt(Math.abs(diff))+' kg '+(diff>0.5?'d’avance':diff< -0.5?'de retard':'d’écart');
+ $('paceStatus').textContent=diff>0.5?'EN AVANCE':diff< -0.5?'EN RETARD':'DANS LES TEMPS';
+ $('paceStatus').className='badge '+(diff>0.5?'good':diff< -0.5?'warn':'');
+ $('weekly').textContent=(remainingDays?Math.max(0,(w-65)/(remainingDays/7)):0).toFixed(2).replace('.',',')+' kg/sem.';
+ $('trophies').innerHTML=[['Obésité classe II',40],['Obésité classe I',35],['Surpoids',30],['Corpulence normale',25]].map(([n,b])=>{
+  const threshold=b*HEIGHT*HEIGHT,hit=n==='Corpulence normale'?w<=threshold&&w>=18.5*HEIGHT*HEIGHT:w<threshold;
+  return `<p style="display:flex;justify-content:space-between;gap:10px"><b>${n}</b><span class="badge ${hit?'good':''}">${hit?'TROPHÉE OBTENU':'À DÉBLOQUER'}</span></p><div class="small">Seuil IMC ${b} · ${fmt(threshold)} kg</div>`;
+ }).join('');
+ const hist=[...data.history].sort((a,b)=>a.date.localeCompare(b.date));
+ $('history').innerHTML=hist.slice().reverse().map(e=>`<div><span>${e.date.split('-').reverse().join('/')}</span><b>${fmt(e.weight)} kg</b></div>`).join('');
+ draw(hist);
+ localStorage.setItem('project65-data',JSON.stringify(data));
+}
+function draw(hist){
+ const c=$('chart'),ctx=c.getContext('2d'),W=c.width,H=c.height;ctx.clearRect(0,0,W,H);
+ ctx.strokeStyle='#293955';ctx.fillStyle='#9eacc4';ctx.font='12px system-ui';
+ [65,80,95,110].forEach(v=>{let y=H-25-(v-60)/60*(H-45);ctx.beginPath();ctx.moveTo(42,y);ctx.lineTo(W-12,y);ctx.stroke();ctx.fillText(v+' kg',4,y+4)});
+ if(!hist.length)return;
+ const minT=new Date(START+'T12:00:00').getTime(),maxT=new Date(END+'T12:00:00').getTime();
+ const x=t=>42+(new Date(t+'T12:00:00').getTime()-minT)/(maxT-minT)*(W-58);
+ const y=v=>H-25-(v-60)/60*(H-45);
+ ctx.strokeStyle='#72d9ee';ctx.lineWidth=3;ctx.beginPath();
+ hist.forEach((p,i)=>i?ctx.lineTo(x(p.date),y(p.weight)):ctx.moveTo(x(p.date),y(p.weight)));ctx.stroke();
+ hist.forEach(p=>{ctx.fillStyle='#f6c85f';ctx.beginPath();ctx.arc(x(p.date),y(p.weight),5,0,Math.PI*2);ctx.fill()});
+}
+$('save').addEventListener('click',()=>{
+ const weight=Number($('weight').value),date=$('date').value;
+ if(!weight||weight<30||weight>250||!date||date<START||date>END){$('message').textContent='Vérifie le poids et la date (entre le 06/11/2026 et le 06/11/2028).';return}
+ data.history=data.history.filter(e=>e.date!==date);data.history.push({date,weight});
+ $('message').textContent='Pesée enregistrée : niveaux, IMC, calendrier et graphique recalculés !';render();
+});
+$('export').addEventListener('click',()=>{
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='project65-sauvegarde.json';a.click();URL.revokeObjectURL(url);
+});
+render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>

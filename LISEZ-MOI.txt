@@ -1,0 +1,11 @@
+PROJECT 65 — installation gratuite sur iPhone
+
+Le jeu est une application web autonome (PWA). Les pesées sont sauvegardées localement sur l'appareil via le navigateur. Le fichier JSON permet d'exporter le journal.
+
+Pour l'installer comme une application :
+1. Publiez le contenu de ce dossier sur un hébergement HTTPS statique gratuit, par exemple GitHub Pages.
+2. Ouvrez l'adresse HTTPS du site dans Safari sur l'iPhone.
+3. Touchez Partager > Sur l’écran d’accueil > Ajouter.
+4. Lancez PROJECT 65 depuis sa nouvelle icône.
+
+Important : ouvrir index.html directement depuis Fichiers ne suffit pas pour installer la PWA. Il faut une adresse web HTTPS. GitHub Pages est gratuit pour un dépôt public.
